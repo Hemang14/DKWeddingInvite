@@ -50,7 +50,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3.4vh;             /* a little more breathing room now that the camera is gone */
+  gap: 6vh;               /* more breathing room now that the camera and photo reel are both gone */
   width: 100%;
   max-width: 430px;
   min-height: 100vh;
@@ -93,59 +93,8 @@ body {
   line-height: 1.7;
 }
 
-.print {
-  position: relative;
-  width: 100px;
-  height: 26vh;
-  min-height: 190px;
-  max-height: 260px;
-  pointer-events: none;
-}
-
-.strip-slot {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 92px;              /* standalone, so sized up a touch from before */
-  height: 100%;
-  margin-left: -46px;
-  overflow: hidden;
-  border-radius: 4px;
-  box-shadow: 0 14px 30px rgba(0,0,0,0.4);
-  transform: rotate(-3deg);
-  z-index: 1;
-}
-
-/* Print-out: the caption and strip rise out of the camera together.
-   The caption docks at the top of the slot; the strip keeps looping upward underneath it. */
-.strip-move {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  transform: translateY(101%);
-  animation: printout 3s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
-}
-
-/* two copies of the strip stacked, so scrolling by half its height loops with no jump */
-.strip-track {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  animation: reel 10s linear infinite;
-}
-
-.strip {
-  display: block;
-  width: 100%;
-}
-
-@keyframes reel { to { transform: translateY(-50%); } }
-
-@keyframes printout { to { transform: translateY(0); } }
-
 #seal {
-  width: 118px;             /* scaled up slightly to match the larger names/strip */
+  width: 118px;             /* scaled up slightly to match the larger names */
   height: 118px;
   border-radius: 50%;
   border: none;
@@ -450,6 +399,10 @@ section { position: relative; }
   font-feature-settings: 'lnum' 1, 'tnum' 1;
 }
 
+/* the countdown section now sits on the dark burgundy (.wine) background,
+   so its numbers/labels need the light palette instead of the cream-background one above */
+.wine .cd-cell span { color: var(--cream); }
+
 .cd-cell label {
   display: block;
   margin-top: 2px;
@@ -458,6 +411,8 @@ section { position: relative; }
   text-transform: uppercase;
   color: var(--soft);
 }
+
+.wine .cd-cell label { color: var(--gold-soft); }
 
 .cd-sep { color: var(--gold); font-size: 26px; transform: translateY(-8px); }
 
@@ -830,10 +785,6 @@ footer { padding: 56px 26px 64px; text-align: center; }
   .name, .env-names { animation: none; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .strip-move { animation: none; transform: translateY(0); }
-  .strip-track { animation: none; }
-}
 
 .ev-cal {
   display: inline-block;
@@ -877,17 +828,3 @@ footer { padding: 56px 26px 64px; text-align: center; }
   100% { transform: translateY(102vh) translateX(var(--drift, 0px)) rotate(540deg); opacity: 0; }
 }
 
-.strip-quote {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  font-family: 'Caveat', cursive;
-  font-size: 13px;
-  line-height: 1.1;
-  text-align: center;
-  color: #4a3a33;
-  background: #fbf7ee;
-  padding: 6px 4px 4px;
-}
