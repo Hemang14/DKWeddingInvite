@@ -50,12 +50,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2.5vh;
+  gap: 3.4vh;             /* a little more breathing room now that the camera is gone */
   width: 100%;
   max-width: 430px;
   min-height: 100vh;
   min-height: 100dvh;
-  padding: 8vh 24px 6vh;
+  padding: 14vh 24px 10vh; /* nudges the whole block down, closer to true vertical centre */
   animation: fadeUp 1.2s ease-out both;
 }
 
@@ -68,16 +68,16 @@ body {
 
 .env-kicker {
   color: #f1dda8;
-  font-size: clamp(11px, 3.2vw, 13px);
+  font-size: clamp(12px, 3.5vw, 14px);
   letter-spacing: 0.36em;
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .env-names {
   color: var(--cream);
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(40px, 13vw, 54px);
+  font-size: clamp(46px, 15vw, 62px);  /* scaled up now that it's the main focal point */
   letter-spacing: 0.01em;
   line-height: 1.08;
   text-align: center;
@@ -95,33 +95,23 @@ body {
 
 .print {
   position: relative;
-  width: 210px;
-  height: 30vh;
-  min-height: 210px;
+  width: 100px;
+  height: 26vh;
+  min-height: 190px;
+  max-height: 260px;
   pointer-events: none;
-}
-
-.cam {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: 130px;
-  display: block;
-  filter: drop-shadow(0 12px 22px rgba(0,0,0,0.45));
 }
 
 .strip-slot {
   position: absolute;
-  bottom: 70px;
+  bottom: 0;
   left: 50%;
-  width: 73px;
-  height: 22vh;
-  min-height: 128px;
-  max-height: 190px;
-  margin-left: -43px;
+  width: 92px;              /* standalone, so sized up a touch from before */
+  height: 100%;
+  margin-left: -46px;
   overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.4);
   transform: rotate(-3deg);
   z-index: 1;
 }
@@ -155,8 +145,8 @@ body {
 @keyframes printout { to { transform: translateY(0); } }
 
 #seal {
-  width: 108px;
-  height: 108px;
+  width: 118px;             /* scaled up slightly to match the larger names/strip */
+  height: 118px;
   border-radius: 50%;
   border: none;
   cursor: pointer;

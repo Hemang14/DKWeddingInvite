@@ -114,7 +114,7 @@ form.addEventListener('submit', () => {
   const attending = form.querySelector('input[name^="entry"][value^="Yes"]');
   const saidYes = attending && attending.checked;
   tyMsg.textContent = saidYes
-    ? "From the bottom of our hearts, thank you for being part of our special day. Your love and warm wishes mean more than words can say. We can't wait to see you!"
+    ? "We are grateful to have our family and loved ones by our side as we celebrate this beautiful occasion. Your presence, blessings and warm wishes will make these celebrations even more special for our families."
     : "We'll miss having you with us, but we're so grateful for your love and blessings. You'll be in our hearts on our special day.";
   setTimeout(() => { thankyou.classList.add('show'); petalBurst(); }, 400);
 });
