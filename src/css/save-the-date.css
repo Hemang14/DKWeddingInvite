@@ -72,24 +72,15 @@ body {
   .std-seq { transition: none; opacity: 1; transform: none; }
 }
 
-/* ---------- Butterfly ---------- */
+/* ---------- Motif ---------- */
 
-.std-butterfly {
+.std-motif {
   position: relative;
   z-index: 2;
-  width: clamp(150px, 42vw, 210px);
+  width: clamp(110px, 30vw, 150px);
   height: auto;
   margin-bottom: clamp(18px, 5vh, 34px);
   filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45));
-}
-
-.wing { fill: url(#wingGold); stroke: #6e5325; stroke-width: 0.6; opacity: 0.96; }
-.wing-lower { opacity: 0.9; }
-.wing-veins path {
-  fill: none;
-  stroke: #6e5325;
-  stroke-width: 0.5;
-  opacity: 0.45;
 }
 
 /* ---------- Type ---------- */
