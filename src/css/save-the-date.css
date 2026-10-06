@@ -93,8 +93,8 @@ body {
 }
 
 #seal {
-  width: 118px;
-  height: 118px;
+  width: clamp(150px, 42vw, 190px);
+  height: clamp(150px, 42vw, 190px);
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -194,7 +194,7 @@ body {
 .std-seq {
   opacity: 0;
   filter: blur(10px);
-  transition: opacity 0.9s ease, filter 0.9s ease;
+  transition: opacity 1.8s ease, filter 1.8s ease;
 }
 
 .std-seq.std-in {
