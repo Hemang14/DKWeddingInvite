@@ -152,8 +152,8 @@ body {
   position: relative;
   width: 100%;
   max-width: 480px;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: url('../../resources/images/SaveTheDateBG.jpg') center / cover no-repeat;
   display: flex;
@@ -161,7 +161,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  padding: calc(5vh + env(safe-area-inset-top, 0px)) 32px calc(3vh + env(safe-area-inset-bottom, 0px));
+  padding: calc(3vh + env(safe-area-inset-top, 0px)) 32px calc(2vh + env(safe-area-inset-bottom, 0px));
 }
 
 /* a faint vignette keeps the text readable over the textured paper, without flattening it */
@@ -207,7 +207,7 @@ body {
 .std-motif {
   position: relative;
   z-index: 2;
-  width: clamp(100px, 26vw, 136px);
+  width: clamp(90px, 24vw, 120px);
   height: auto;
   margin-bottom: clamp(10px, 2.4vh, 18px);
   filter: drop-shadow(0 10px 18px rgba(0,0,0,0.45));
@@ -221,13 +221,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  margin-bottom: clamp(14px, 3.4vh, 24px);
+  gap: 6px;
+  margin-bottom: clamp(10px, 2.4vh, 16px);
 }
 
 .std-headline span {
   font-weight: 500;
-  font-size: clamp(40px, 12.4vw, 54px);
+  font-size: clamp(38px, 11.4vw, 48px);
   letter-spacing: 0.34em;
   text-indent: 0.34em; /* re-centres the word despite the trailing tracked space */
   color: var(--cream);
@@ -258,7 +258,7 @@ body {
   justify-content: center;
   gap: 10px;
   width: 150px;
-  margin: 8px auto 14px;
+  margin: 6px auto 10px;
   color: var(--gold);
   font-size: 13px;
 }
@@ -272,7 +272,7 @@ body {
   opacity: 0.6;
 }
 
-.std-rule-sm { width: 110px; margin: 8px auto; }
+.std-rule-sm { width: 110px; margin: 6px auto; }
 
 .std-names {
   display: flex;
@@ -283,7 +283,7 @@ body {
 
 .std-names span {
   font-family: 'Great Vibes', cursive;
-  font-size: clamp(36px, 11.5vw, 48px);
+  font-size: clamp(32px, 10vw, 42px);
   font-weight: 400;
   letter-spacing: 0.01em;
   line-height: 1.15;
@@ -343,7 +343,7 @@ body {
 }
 
 .std-formal {
-  margin-top: clamp(14px, 3.4vh, 24px);
+  margin-top: clamp(10px, 2.4vh, 16px);
   font-family: 'Great Vibes', cursive;
   font-size: clamp(22px, 6.4vw, 27px);
   color: var(--gold-soft);
@@ -541,39 +541,28 @@ textarea.std-f-input { resize: vertical; }
 .std-footer {
   width: 100%;
   max-width: 480px;
-  background: var(--cream);
-  display: flex;
-  justify-content: center;
-  padding: 0 28px 56px;
-}
-
-.std-footer-card {
-  width: 100%;
-  max-width: 280px;
   background:
-    radial-gradient(120% 140% at 50% 0%, #0d2a1c 0%, var(--bg-deep) 55%, #020705 100%);
-  border: 1px solid rgba(201,163,92,0.4);
-  border-radius: 20px;
-  box-shadow: 0 14px 34px rgba(0,0,0,0.3);
-  padding: 32px 24px 28px;
+    radial-gradient(120% 90% at 50% 0%, #0d2a1c 0%, var(--bg-deep) 55%, #020705 100%);
   text-align: center;
+  padding: 56px 26px 64px;
 }
 
 .std-footer-logo {
-  width: 52px;
-  height: auto;
-  margin-bottom: 14px;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 16px;
   filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
 }
 
-.std-footer-script { font-family: 'Great Vibes', cursive; font-size: 26px; color: var(--gold-soft); }
+.std-footer-script { font-family: 'Great Vibes', cursive; font-size: 30px; color: var(--gold-soft); }
 
 .std-footer-names {
-  font-size: 16px;
-  letter-spacing: 0.18em;
+  font-size: 20px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--cream);
   margin: 8px 0 10px;
 }
 
-.std-footer-see { font-size: 13px; font-style: italic; color: var(--gold-soft); opacity: 0.85; }
+.std-footer-see { font-size: 14px; font-style: italic; color: var(--gold-soft); opacity: 0.85; }
