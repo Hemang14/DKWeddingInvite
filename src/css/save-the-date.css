@@ -96,16 +96,11 @@ body {
 #seal {
   width: clamp(150px, 42vw, 190px);
   height: clamp(150px, 42vw, 190px);
-  border-radius: 50%;
   border: none;
   cursor: pointer;
-  overflow: hidden;
-  color: var(--bg-deep);
-  background:
-    radial-gradient(circle at 35% 30%, #e9cf92 0%, var(--gold) 42%, #9a7434 78%, #7c5c26 100%);
-  box-shadow:
-    0 6px 24px rgba(0,0,0,0.5),
-    0 0 0 6px rgba(201,163,92,0.18);
+  background: none;
+  box-shadow: 0 0 0 0 rgba(201,163,92,0.18);
+  border-radius: 50%;
   display: grid;
   place-items: center;
   animation: envPulse 2.4s ease-in-out infinite;
@@ -116,10 +111,10 @@ body {
 
 .seal-logo {
   width: 100%;
-  height: 110%;
-  object-fit: cover;
-  border-radius: 50%;
+  height: 100%;
+  object-fit: contain;
   pointer-events: none;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.5));
 }
 
 .env-hint {
@@ -139,8 +134,8 @@ body {
 .env-hint:active { opacity: 1; }
 
 @keyframes envPulse {
-  0%, 100% { box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 0 6px rgba(201,163,92,0.18); }
-  50% { box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 0 16px rgba(201,163,92,0.04); }
+  0%, 100% { box-shadow: 0 0 0 6px rgba(201,163,92,0.18); }
+  50% { box-shadow: 0 0 0 16px rgba(201,163,92,0.04); }
 }
 
 @keyframes envFadeUp {
@@ -470,42 +465,76 @@ textarea.std-f-input { resize: vertical; }
 
 #rsvp-frame { display: none; width: 0; height: 0; border: 0; }
 
+#rsvp-form.std-hidden { display: none; }
+
+/* ---------- Thank you overlay (same treatment as the envelope) ---------- */
+
 .std-thankyou {
-  display: none;
-  max-width: 340px;
-  margin: 0 auto;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: url('../../resources/images/EnvelopeBg.jpg') center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s;
 }
 
-.std-thankyou.show { display: block; }
-#rsvp-form.std-hidden { display: none; }
+.std-thankyou::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 38%, rgba(0,0,0,0) 0%, rgba(2,8,5,0.22) 65%, rgba(2,8,5,0.5) 100%);
+  pointer-events: none;
+}
+
+.std-thankyou.show { opacity: 1; visibility: visible; }
+
+.std-ty-inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 340px;
+  padding: 0 28px;
+}
+
+.std-ty-seal {
+  width: clamp(110px, 30vw, 150px);
+  height: auto;
+  margin: 0 auto 18px;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.5));
+}
 
 .std-ty-script {
   font-family: 'Great Vibes', cursive;
-  font-size: 32px;
-  color: #7c3a26;
-  margin-top: 10px;
+  font-size: clamp(38px, 11vw, 50px);
+  color: var(--cream);
 }
 
 .std-ty-msg {
   font-size: 16px;
   line-height: 1.7;
-  color: #6d5147;
-  margin: 14px 0 26px;
+  color: var(--gold-soft);
+  margin: 16px 0 30px;
 }
 
 .std-ty-close {
   font-family: inherit;
   font-size: 14px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #7c3a26;
+  color: var(--gold-soft);
   background: none;
-  border: 1px solid rgba(124,58,38,0.5);
+  border: 1px solid rgba(230,207,150,0.5);
   border-radius: 40px;
-  padding: 10px 22px;
+  padding: 12px 26px;
   cursor: pointer;
 }
+
+.std-ty-close:active { opacity: 0.8; }
 
 /* ---------- Footer ---------- */
 
