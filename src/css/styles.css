@@ -539,7 +539,7 @@ section { position: relative; }
   will-change: transform;
 }
 
-.timeline-runner img { width: 72%; height: 72%; object-fit: contain; }
+.timeline-runner img { width: 88%; height: 88%; object-fit: cover; border-radius: 50%; }
 
 .tl-row {
   position: relative;
@@ -570,8 +570,8 @@ section { position: relative; }
 .tl-name h3 {
   font-family: 'Great Vibes', cursive;
   font-weight: 400;
-  font-size: clamp(24px, 7.6vw, 30px);
-  line-height: 1;
+  font-size: clamp(19px, 6.4vw, 24px);
+  line-height: 1.2;
   color: var(--wine);
 }
 
@@ -588,10 +588,11 @@ section { position: relative; }
 .tl-details .ev-map,
 .tl-details .ev-cal { display: table; margin: 0; }
 
-.tl-row > .tl-side:first-child .ev-map,
-.tl-row > .tl-side:first-child .ev-cal { margin-left: auto; margin-right: 0; }
+/* "Tap for directions" always sits centred under its column, on either side of the line */
+.tl-details .ev-map { margin-left: auto; margin-right: auto; }
 
-.tl-row > .tl-side:last-child .ev-map,
+/* "Add to calendar" (plain text, not a pill) keeps following the row's left/right alignment */
+.tl-row > .tl-side:first-child .ev-cal { margin-left: auto; margin-right: 0; }
 .tl-row > .tl-side:last-child .ev-cal { margin-right: auto; margin-left: 0; }
 
 .ev-map {
