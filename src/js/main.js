@@ -316,3 +316,45 @@ document.querySelectorAll('.ev-cal').forEach(btn => {
   if (document.readyState === 'complete') start(); else window.addEventListener('load', start);
   window.addEventListener('resize', () => { const frac = (marquee.scrollLeft - setW) / (setW || 1); measure(); marquee.scrollLeft = pos = lastSet = setW + frac * setW; });
 })();
+
+/* ---- Celebrations timeline: the KD monogram rides the gold line, tracking scroll position ---- */
+(function () {
+  const track = document.getElementById('timeline-track');
+  const runner = document.getElementById('timeline-runner');
+  if (!track || !runner) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const rect = track.getBoundingClientRect();
+    const trackHeight = rect.height;
+    if (trackHeight <= 0) return;
+
+    // Progress is driven by where the vertical middle of the screen sits against the line:
+    // above the line -> 0 (runner parked at the top dot), below it -> 1 (parked at the bottom dot).
+    const viewportMid = window.innerHeight / 2;
+    let progress = (viewportMid - rect.top) / trackHeight;
+    progress = Math.max(0, Math.min(1, progress));
+
+    // runner's top is relative to the same .timeline box the track sits in, so
+    // add the track's own offset within it (the track has a small 6px inset top/bottom)
+    runner.style.top = (track.offsetTop + progress * trackHeight) + 'px';
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  if (reduceMotion) {
+    runner.style.top = '50%';
+  } else {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    window.addEventListener('load', update);
+    update();
+  }
+})();

@@ -496,66 +496,119 @@ section { position: relative; }
 
 .note .note-sign { text-align: right; margin-top: 14px; font-weight: 600; }
 
-.events { padding-bottom: 70px; }
+.events { padding-bottom: 60px; }
 
-.event {
-  margin: 0 auto 34px;
-  max-width: 340px;
-  background: #fffdf8;
-  border: 1px solid rgba(201,163,92,0.5);
-  border-radius: 18px;
-  box-shadow: 0 10px 26px rgba(74,18,32,0.14);
+/* ---- Alternating celebrations timeline ---- */
+
+.timeline {
+  position: relative;
+  max-width: 400px;
+  margin: 46px auto 0;
+  padding: 0 4px;
+}
+
+.timeline-track {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom,
+    rgba(201,163,92,0) 0%,
+    rgba(201,163,92,0.55) 8%,
+    rgba(201,163,92,0.55) 92%,
+    rgba(201,163,92,0) 100%);
+  transform: translateX(-50%);
+}
+
+/* the KD monogram rides this line, tracking how far the guest has scrolled through the timeline */
+.timeline-runner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 38px;
+  height: 38px;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff9ec 0%, var(--cream) 55%, #e2d2ad 100%);
+  box-shadow: 0 4px 14px rgba(74,18,32,0.32), 0 0 0 3px rgba(201,163,92,0.4);
+  display: grid;
+  place-items: center;
   overflow: hidden;
+  will-change: transform;
 }
 
-.event img,
-.event video {
-  width: 100%;
-  display: block;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+.timeline-runner img { width: 72%; height: 72%; object-fit: contain; }
+
+.tl-row {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 30px 1fr;
+  align-items: center;
+  padding: 32px 0;
 }
 
-/* only the video cards need the extra zoom, to crop the title lettering baked into the top of the footage */
-.event video {
-  transform: scale(1.12);
-  transform-origin: 50% 100%;
+.tl-row:first-child { padding-top: 8px; }
+.tl-row:last-child { padding-bottom: 8px; }
+
+.tl-side { min-width: 0; }
+
+.tl-row > .tl-side:first-child { text-align: right; padding-right: 14px; }
+.tl-row > .tl-side:last-child { text-align: left; padding-left: 14px; }
+
+.tl-dot {
+  justify-self: center;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 4px var(--cream), 0 0 0 5px rgba(201,163,92,0.35);
 }
 
-.event-info { padding: 22px 18px 24px; }
-
-.event-info h3 {
+.tl-name h3 {
   font-family: 'Great Vibes', cursive;
   font-weight: 400;
-  font-size: 34px;
+  font-size: clamp(24px, 7.6vw, 30px);
+  line-height: 1;
   color: var(--wine);
-  margin-bottom: 8px;
 }
 
-.ev-when { font-size: 16.5px; font-weight: 500; color: var(--ink); }
+.tl-details .ev-when { font-size: 14.5px; font-weight: 500; color: var(--ink); line-height: 1.45; }
 
-.ev-venue {
-  font-size: 12px;
-  letter-spacing: 0.22em;
+.tl-details .ev-venue {
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--soft);
-  margin: 6px 0 12px;
+  margin: 6px 0 10px;
 }
 
+.tl-details .ev-map,
+.tl-details .ev-cal { display: table; margin: 0; }
+
+.tl-row > .tl-side:first-child .ev-map,
+.tl-row > .tl-side:first-child .ev-cal { margin-left: auto; margin-right: 0; }
+
+.tl-row > .tl-side:last-child .ev-map,
+.tl-row > .tl-side:last-child .ev-cal { margin-right: auto; margin-left: 0; }
+
 .ev-map {
-  display: inline-block;
-  font-size: 12.5px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--wine);
   text-decoration: none;
   border: 1px solid var(--gold);
-  padding: 8px 18px;
+  padding: 7px 13px;
   border-radius: 40px;
   transition: background 0.3s, color 0.3s;
 }
 
 .ev-map:hover { background: var(--wine); color: var(--gold-soft); }
+
+.tl-details .ev-cal { margin-top: 10px; }
 
 .moments { padding-bottom: 74px; }
 

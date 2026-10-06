@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Ballet&family=Great+Vibes&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="src/css/styles.css?v=7">
+<link rel="stylesheet" href="src/css/styles.css?v=8">
 <style>.note::before{filter:url(#rough-paper)}</style>
 </head>
 <body>
@@ -66,49 +66,54 @@
     <p class="sec-eyebrow gold-text reveal">The Celebrations</p>
     <h2 class="sec-script reveal">Two days of joy</h2>
 
-    <article class="event reveal">
-      <img src="resources/images/event-1.jpg" alt="Haldi illustration" loading="lazy">
-      <div class="event-info">
-        <h3>Haldi</h3>
-        <p class="ev-when">Friday, 11 December 2026<br>10 AM onwards</p>
-        <p class="ev-venue">IIDM Resort, Lucknow</p>
-        <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
-        <button class="ev-cal" type="button" data-cal="haldi">＋ Add to calendar</button>
-      </div>
-    </article>
+    <div class="timeline" id="timeline">
+      <div class="timeline-track" id="timeline-track" aria-hidden="true"></div>
+      <div class="timeline-runner" id="timeline-runner" aria-hidden="true"><img src="resources/images/kd-logo.png" alt=""></div>
 
-    <article class="event reveal">
-      <img src="resources/images/event-2.jpg" alt="Sangeet illustration" loading="lazy">
-      <div class="event-info">
-        <h3>Sangeet</h3>
-        <p class="ev-when">Friday, 11 December 2026<br>7 PM onwards</p>
-        <p class="ev-venue">IIDM Resort, Lucknow</p>
-        <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
-        <button class="ev-cal" type="button" data-cal="sangeet">＋ Add to calendar</button>
+      <div class="tl-row reveal">
+        <div class="tl-side tl-name"><h3>Haldi</h3></div>
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-side tl-details">
+          <p class="ev-when">Friday, 11 December 2026<br>10 AM onwards</p>
+          <p class="ev-venue">IIDM Resort, Lucknow</p>
+          <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
+          <button class="ev-cal" type="button" data-cal="haldi">＋ Add to calendar</button>
+        </div>
       </div>
-    </article>
 
-    <article class="event reveal">
-      <img src="resources/images/event-3.jpg" alt="Wedding illustration" loading="lazy">
-      <div class="event-info">
-        <h3>Wedding</h3>
-        <p class="ev-when">Saturday, 12 December 2026<br>11 AM onwards</p>
-        <p class="ev-venue">IIDM Resort, Lucknow</p>
-        <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
-        <button class="ev-cal" type="button" data-cal="wedding">＋ Add to calendar</button>
+      <div class="tl-row reveal">
+        <div class="tl-side tl-details">
+          <p class="ev-when">Friday, 11 December 2026<br>7 PM onwards</p>
+          <p class="ev-venue">IIDM Resort, Lucknow</p>
+          <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
+          <button class="ev-cal" type="button" data-cal="sangeet">＋ Add to calendar</button>
+        </div>
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-side tl-name"><h3>Sangeet</h3></div>
       </div>
-    </article>
 
-    <article class="event reveal">
-      <img src="resources/images/event-4.jpg" alt="Reception illustration" loading="lazy">
-      <div class="event-info">
-        <h3>Reception</h3>
-        <p class="ev-when">Saturday, 12 December 2026<br>7 PM onwards</p>
-        <p class="ev-venue">IIDM Resort, Lucknow</p>
-        <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
-        <button class="ev-cal" type="button" data-cal="reception">＋ Add to calendar</button>
+      <div class="tl-row reveal">
+        <div class="tl-side tl-name"><h3>Wedding</h3></div>
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-side tl-details">
+          <p class="ev-when">Saturday, 12 December 2026<br>11 AM onwards</p>
+          <p class="ev-venue">IIDM Resort, Lucknow</p>
+          <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
+          <button class="ev-cal" type="button" data-cal="wedding">＋ Add to calendar</button>
+        </div>
       </div>
-    </article>
+
+      <div class="tl-row reveal">
+        <div class="tl-side tl-details">
+          <p class="ev-when">Saturday, 12 December 2026<br>7 PM onwards</p>
+          <p class="ev-venue">IIDM Resort, Lucknow</p>
+          <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
+          <button class="ev-cal" type="button" data-cal="reception">＋ Add to calendar</button>
+        </div>
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-side tl-name"><h3>Reception</h3></div>
+      </div>
+    </div>
   </section>
 
   <section class="countdown-sec wine">
@@ -187,6 +192,6 @@
 <audio id="bg-music" loop preload="auto" src="https://framerusercontent.com/assets/tHk7xrivW8bDCdhOyDo3Sw3P4D4.mp3"></audio>
 <button id="music-toggle" aria-label="Toggle music" hidden>♫</button>
 
-<script src="src/js/main.js?v=7"></script>
+<script src="src/js/main.js?v=8"></script>
 </body>
 </html>
