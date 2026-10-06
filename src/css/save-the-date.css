@@ -18,6 +18,140 @@ body {
   justify-content: center;
 }
 
+/* ---------- Envelope ---------- */
+
+#envelope {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: url('../../resources/images/EnvelopeBg.jpg') center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: opacity 1s ease, visibility 1s;
+}
+
+#envelope::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 38%, rgba(0,0,0,0) 0%, rgba(2,8,5,0.22) 65%, rgba(2,8,5,0.5) 100%);
+  pointer-events: none;
+}
+
+#envelope.open { opacity: 0; visibility: hidden; }
+
+.env-layout {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6vh;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 14vh 24px 10vh;
+  animation: envFadeUp 1.2s ease-out both;
+}
+
+.env-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.env-kicker {
+  color: var(--gold-hi);
+  font-size: clamp(12px, 3.5vw, 14px);
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.env-names {
+  color: var(--cream);
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(46px, 15vw, 62px);
+  letter-spacing: 0.01em;
+  line-height: 1.08;
+  text-align: center;
+}
+
+.env-names span {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 0.56em;
+  letter-spacing: 0.16em;
+  line-height: 1.7;
+}
+
+#seal {
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  color: var(--bg-deep);
+  background:
+    radial-gradient(circle at 35% 30%, #e9cf92 0%, var(--gold) 42%, #9a7434 78%, #7c5c26 100%);
+  box-shadow:
+    0 6px 24px rgba(0,0,0,0.5),
+    0 0 0 6px rgba(201,163,92,0.18);
+  display: grid;
+  place-items: center;
+  animation: envPulse 2.4s ease-in-out infinite;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+#seal:active { transform: scale(0.92); }
+
+.seal-logo {
+  width: 100%;
+  height: 110%;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.env-hint {
+  margin-top: -10px;
+  padding: 10px 22px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  color: var(--gold-soft);
+  font-style: italic;
+  font-size: 16px;
+  opacity: 0.85;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.env-hint:active { opacity: 1; }
+
+@keyframes envPulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 0 6px rgba(201,163,92,0.18); }
+  50% { box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 0 16px rgba(201,163,92,0.04); }
+}
+
+@keyframes envFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .env-layout { animation: none; }
+  #seal { animation: none; }
+}
+
 .std {
   position: relative;
   width: 100%;
