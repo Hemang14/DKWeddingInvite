@@ -227,7 +227,8 @@ body {
 }
 
 .std-headline span {
-  font-weight: 500;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
   font-size: clamp(38px, 11.4vw, 48px);
   letter-spacing: 0.34em;
   text-indent: 0.34em; /* re-centres the word despite the trailing tracked space */
@@ -310,8 +311,7 @@ body {
   color: var(--cream);
   background: none;
   border: none;
-  border-bottom: 1px dotted rgba(243,236,221,0.5);
-  padding: 0 0 3px;
+  padding: 0;
   cursor: pointer;
 }
 
@@ -327,8 +327,6 @@ body {
   opacity: 0.92;
   min-height: 1.4em; /* reserves its line so nothing jumps while it types in */
   text-decoration: none;
-  border-bottom: 1px dotted rgba(230,207,150,0.5);
-  padding-bottom: 3px;
   cursor: pointer;
 }
 
