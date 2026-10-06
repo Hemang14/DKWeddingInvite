@@ -313,7 +313,10 @@ body {
   border: none;
   padding: 0;
   cursor: pointer;
+  min-height: 1.3em; /* reserves its line so nothing jumps while it types in */
 }
+
+.std-date .std-type-text { letter-spacing: 0.18em; }
 
 /* tapping the date adds the wedding dates to the guest's calendar */
 .std-date:active { opacity: 0.75; }
@@ -336,6 +339,7 @@ body {
 /* the typed-out text gets its own tracked span; a thin cursor blinks at the end while typing */
 .std-type-text { letter-spacing: 0.26em; }
 
+.std-date.std-typing .std-type-text::after,
 .std-venue.std-typing .std-type-text::after {
   content: '';
   display: inline-block;

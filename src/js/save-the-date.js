@@ -1,6 +1,7 @@
 // Save the Date — envelope opens first, then a single staged reveal plays once.
-// Reveal order: Ganesha motif -> "Save the Date" headline -> "for the wedding of" + rule ->
-//               names -> date -> venue (typed out letter by letter) -> "Formal invitation to follow"
+// Reveal order: Ganesha motif -> "Circle the Day" headline -> "for the wedding of" + rule ->
+//               names -> date (typed out letter by letter) -> venue (typed out letter by letter) ->
+//               "Formal invitation to follow"
 
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -14,6 +15,9 @@
     Array.from(document.querySelectorAll('.std-seq-' + n))
   );
   const formal = document.querySelector('.std-formal');
+  const dateEl = document.getElementById('std-date-cal');
+  const dateTypeTarget = dateEl ? dateEl.querySelector('.std-type-text') : null;
+  const dateText = dateEl ? (dateEl.dataset.text || '') : '';
   const venue = document.getElementById('std-venue');
   const typeTarget = venue ? venue.querySelector('.std-type-text') : null;
   const venueText = venue ? (venue.dataset.text || '') : '';
@@ -22,20 +26,29 @@
     nodes.forEach(el => el.classList.add('std-in'));
   }
 
-  function typeVenue(onDone) {
-    if (!venue || !typeTarget) { onDone(); return; }
-    venue.classList.add('std-typing');
+  // generic letter-by-letter typewriter, used for both the date and the venue line
+  function typeInto(el, target, text, onDone) {
+    if (!el || !target) { if (onDone) onDone(); return; }
+    el.classList.add('std-typing');
     let i = 0;
     const CHAR_MS = 45;
     (function tick() {
-      if (i <= venueText.length) {
-        typeTarget.textContent = venueText.slice(0, i);
+      if (i <= text.length) {
+        target.textContent = text.slice(0, i);
         i++;
         setTimeout(tick, CHAR_MS);
       } else {
-        venue.classList.remove('std-typing');
-        onDone();
+        el.classList.remove('std-typing');
+        if (onDone) onDone();
       }
+    })();
+  }
+
+  // runs a list of (next) => {...} steps one after another, each calling next() when it's done
+  function chain(fns) {
+    let i = 0;
+    (function step() {
+      if (i < fns.length) fns[i++](step);
     })();
   }
 
@@ -43,29 +56,30 @@
     if (reduceMotion) {
       steps.forEach(reveal);
       reveal([formal]);
+      if (dateTypeTarget) dateTypeTarget.textContent = dateText;
       if (typeTarget) typeTarget.textContent = venueText;
       return;
     }
 
-    const START = 150;  // small delay before anything moves, so the page isn't mid-paint
-    // gap AFTER each step (motif -> headline is quick, so "Circle the Day" lands fast;
-    // the rest keep the slower, even pace)
-    const GAPS = [450, 1500, 1500, 1500, 1500];
+    const START = 150;      // small delay before anything moves, so the page isn't mid-paint
+    const HEADLINE_GAP = 450; // motif -> headline is quick, so "Circle the Day" lands fast
+    const STEP_GAP = 1500;    // the rest keep the slower, even pace
+    const TYPE_PAUSE = 150;   // pause between a line's container fading in and it starting to type
+    const POST_TYPE_PAUSE = 400; // pause after a line finishes typing before the next thing appears
 
-    let t = START;
-    steps.forEach((group, i) => {
-      setTimeout(() => reveal(group), t);
-      if (i < GAPS.length) t += GAPS[i];
-    });
-
-    // t now equals the time the venue step (the last group) reveals;
-    // start typing right after it fades in, then reveal the closing line once typing ends
-    const venueRevealAt = t;
-    setTimeout(() => {
-      typeVenue(() => {
-        setTimeout(() => reveal([formal]), 400);
-      });
-    }, venueRevealAt + 150);
+    // steps[0..3] = motif, headline, "for the wedding of" + rule, names
+    // steps[4] = small rule + date shell, steps[5] = small rule + venue shell
+    chain([
+      next => setTimeout(() => { reveal(steps[0]); next(); }, START),
+      next => setTimeout(() => { reveal(steps[1]); next(); }, HEADLINE_GAP),
+      next => setTimeout(() => { reveal(steps[2]); next(); }, STEP_GAP),
+      next => setTimeout(() => { reveal(steps[3]); next(); }, STEP_GAP),
+      next => setTimeout(() => { reveal(steps[4]); next(); }, STEP_GAP),
+      next => setTimeout(() => typeInto(dateEl, dateTypeTarget, dateText, next), TYPE_PAUSE),
+      next => setTimeout(() => { reveal(steps[5]); next(); }, POST_TYPE_PAUSE),
+      next => setTimeout(() => typeInto(venue, typeTarget, venueText, next), TYPE_PAUSE),
+      () => setTimeout(() => reveal([formal]), POST_TYPE_PAUSE)
+    ]);
   }
 
   // skipping straight to the card (e.g. a shared #open link) bypasses the envelope entirely

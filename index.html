@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Save the Date — Dishakkshi &amp; Kartikay</title>
 <meta name="description" content="Save the date — Dishakkshi &amp; Kartikay are getting married, 11 &amp; 12 December 2026, IIDM Resort, Lucknow.">
+<meta name="theme-color" content="#050e0a">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="src/css/save-the-date.css?v=12">
+<link rel="stylesheet" href="src/css/save-the-date.css?v=13">
 </head>
 <body>
 
@@ -51,7 +52,10 @@
     </p>
     <div class="std-rule std-rule-sm std-seq std-seq-5"><span>◆</span></div>
 
-    <button type="button" class="std-date std-seq std-seq-5" id="std-date-cal">11 &amp; 12 December 2026</button>
+    <button type="button" class="std-date std-seq std-seq-5" id="std-date-cal" data-text="11 &amp; 12 December 2026">
+      <span class="std-type-text" aria-hidden="true"></span>
+      <span class="std-sr-only">11 &amp; 12 December 2026</span>
+    </button>
     <div class="std-rule std-rule-sm std-seq std-seq-6"><span>❖</span></div>
 
     <a class="std-venue std-seq std-seq-6" id="std-venue" data-text="IIDM Resort, Lucknow" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">
@@ -121,6 +125,6 @@
   </div>
 </div>
 
-<script src="src/js/save-the-date.js?v=11"></script>
+<script src="src/js/save-the-date.js?v=12"></script>
 </body>
 </html>
