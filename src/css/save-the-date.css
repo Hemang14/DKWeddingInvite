@@ -223,6 +223,7 @@ body {
   align-items: center;
   gap: 6px;
   margin-bottom: clamp(10px, 2.4vh, 16px);
+  transition-duration: 0.9s; /* "Circle the Day" pops in quicker than the rest */
 }
 
 .std-headline span {

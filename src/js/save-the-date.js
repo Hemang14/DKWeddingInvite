@@ -47,18 +47,20 @@
       return;
     }
 
-    const GAP = 1500;   // pause between each reveal step (matches the 1.5s fade duration, so every stage fades at the same even pace)
     const START = 150;  // small delay before anything moves, so the page isn't mid-paint
+    // gap AFTER each step (motif -> headline is quick, so "Circle the Day" lands fast;
+    // the rest keep the slower, even pace)
+    const GAPS = [450, 1500, 1500, 1500, 1500];
 
     let t = START;
-    steps.forEach((group) => {
+    steps.forEach((group, i) => {
       setTimeout(() => reveal(group), t);
-      t += GAP;
+      if (i < GAPS.length) t += GAPS[i];
     });
 
-    // the venue step (index 5, the 6th group) finishes revealing at this point;
+    // t now equals the time the venue step (the last group) reveals;
     // start typing right after it fades in, then reveal the closing line once typing ends
-    const venueRevealAt = START + GAP * 5;
+    const venueRevealAt = t;
     setTimeout(() => {
       typeVenue(() => {
         setTimeout(() => reveal([formal]), 400);
