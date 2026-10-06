@@ -4,194 +4,260 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#310a12">
-<title>Dishakkshi &amp; Kartikay — Wedding Invitation</title>
-<meta name="description" content="Together with their families, Dishakkshi and Kartikay invite you to join their wedding — 11 &amp; 12 December 2026, IIDM Resort, Lucknow.">
-<meta property="og:title" content="Dishakkshi &amp; Kartikay — Wedding Invitation">
-<meta property="og:description" content="We invite you to share our joy. Tap to open the invitation.">
-<meta property="og:image" content="resources/images/cover.jpg">
+<title>Dishakkshi &amp; Kartikay — Save the Date</title>
+<meta name="description" content="Save the Date — Dishakkshi &amp; Kartikay, 11 &amp; 12 December 2026, IIDM Resort, Lucknow.">
+<meta property="og:title" content="Dishakkshi &amp; Kartikay — Save the Date">
+<meta property="og:description" content="Mark your calendars. The formal invitation will follow.">
+<meta property="og:image" content="resources/images/camera.png">
 <link rel="icon" href="resources/images/kd-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Ballet&family=Great+Vibes&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="src/css/styles.css?v=9">
-<style>.note::before{filter:url(#rough-paper)}</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: #1a0a05;
+    font-family: 'Cormorant Garamond', serif;
+    color: #f5e6cc;
+    overflow: hidden;
+  }
+
+  .std-wrap {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Background image */
+  .std-bg {
+    position: absolute;
+    inset: 0;
+    background: url('resources/images/camera.png') center center / cover no-repeat;
+    opacity: 0;
+    animation: fadeInBg 2.5s ease forwards;
+  }
+
+  /* Dark overlay for readability */
+  .std-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 5, 2, 0.55) 0%,
+      rgba(15, 5, 2, 0.72) 50%,
+      rgba(15, 5, 2, 0.80) 100%
+    );
+  }
+
+  /* Content container */
+  .std-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    max-width: 600px;
+    width: 100%;
+  }
+
+  /* === Save the Date title — fades in first === */
+  .std-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    color: #d4af72;
+    opacity: 0;
+    animation: fadeIn 1.8s ease 0.5s forwards;
+    text-shadow: 0 2px 18px rgba(180, 130, 50, 0.45);
+    line-height: 1.1;
+  }
+
+  /* === Divider + "The Wedding Of" — appears after title === */
+  .std-sub-group {
+    opacity: 0;
+    animation: fadeIn 1.2s ease 2.8s forwards;
+    margin-top: 1.2rem;
+  }
+
+  .std-rule {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+  }
+
+  .std-rule::before,
+  .std-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af72, transparent);
+    max-width: 100px;
+  }
+
+  .std-rule span {
+    color: #d4af72;
+    font-size: 1.1rem;
+  }
+
+  .std-wedding-of {
+    font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #c9b07a;
+    opacity: 0.9;
+  }
+
+  /* === Names — typewriter === */
+  .std-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.4rem, 8vw, 4.2rem);
+    color: #f5e6cc;
+    margin-top: 1rem;
+    line-height: 1.2;
+    min-height: 1.4em;
+    text-shadow: 0 1px 12px rgba(200, 160, 80, 0.3);
+  }
+
+  .std-names .cursor {
+    display: inline-block;
+    width: 2px;
+    background: #d4af72;
+    animation: blink 0.7s step-end infinite;
+    vertical-align: middle;
+    height: 0.85em;
+    margin-left: 2px;
+  }
+
+  /* === Date — typewriter === */
+  .std-date {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    letter-spacing: 0.18em;
+    color: #d4af72;
+    margin-top: 1.4rem;
+    min-height: 1.6em;
+    font-weight: 500;
+  }
+
+  /* === Address — typewriter === */
+  .std-address {
+    font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+    letter-spacing: 0.12em;
+    color: #c9b07a;
+    margin-top: 0.6rem;
+    opacity: 0.88;
+    min-height: 1.5em;
+  }
+
+  /* === Formal invitation line — fades in at end === */
+  .std-formal {
+    margin-top: 2rem;
+    font-size: clamp(0.72rem, 2vw, 0.85rem);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #a8916a;
+    opacity: 0;
+  }
+
+  @keyframes fadeInBg {
+    0%   { opacity: 0; transform: scale(1.04); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  @keyframes fadeInFormal {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+</style>
 </head>
 <body>
 
-<div id="envelope">
-  <div class="env-layout">
-    <div class="env-top">
-      <p class="env-kicker">We Are Getting Married</p>
-      <p class="env-names">Dishakkshi <span>&amp;</span> Kartikay</p>
+<div class="std-wrap">
+  <div class="std-bg"></div>
+  <div class="std-overlay"></div>
+
+  <div class="std-content">
+    <div class="std-title">Save the Date</div>
+
+    <div class="std-sub-group">
+      <div class="std-rule"><span>&#10086;</span></div>
+      <p class="std-wedding-of">The Wedding of</p>
     </div>
-    <button id="seal" aria-label="Open the invitation">
-      <img class="seal-logo" src="resources/images/seal2.jpg" alt="K and D monogram">
-    </button>
-    <button type="button" class="env-hint" id="env-hint">Tap to open</button>
+
+    <div class="std-names" id="std-names"><span class="cursor"></span></div>
+    <div class="std-date"  id="std-date"></div>
+    <div class="std-address" id="std-address"></div>
+    <p class="std-formal" id="std-formal">Formal Invitation to Follow</p>
   </div>
 </div>
 
-<svg width="0" height="0" aria-hidden="true"><defs><filter id="rough-paper"><feTurbulence type="fractalNoise" baseFrequency="0.015 0.035" numOctaves="4" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="16"/></filter></defs></svg>
+<script>
+  function typewriter(el, text, startDelay, speed, onDone) {
+    let i = 0;
+    const cursor = el.querySelector('.cursor');
+    setTimeout(() => {
+      const timer = setInterval(() => {
+        el.textContent = text.slice(0, i + 1);
+        i++;
+        if (cursor) el.appendChild(cursor);
+        if (i >= text.length) {
+          clearInterval(timer);
+          if (cursor) cursor.style.display = 'none';
+          if (onDone) onDone();
+        }
+      }, speed);
+    }, startDelay);
+  }
 
-<main class="invite" id="card" aria-hidden="true">
+  // Sequence timings (ms from page load)
+  // 0ms      : bg starts fading in
+  // 500ms    : "Save the Date" starts fading in (2.8s fade)
+  // 2800ms   : "The Wedding of" + rule fade in (already CSS animated)
+  // 4400ms   : names typewriter starts
+  const NAMES_START   = 4400;
+  const NAMES_SPEED   = 65;
+  const NAMES_TEXT    = 'Dishakkshi & Kartikay';
 
-  <div class="petals" id="petals" aria-hidden="true"></div>
+  const DATE_SPEED    = 55;
+  const ADDR_SPEED    = 45;
+  const DATE_TEXT     = '11 & 12 · December 2026';
+  const ADDR_TEXT     = 'IIDM Resort, Lucknow';
 
-  <section class="hero">
-    <div class="photo-wrap">
-      <img src="resources/images/cover.jpg" alt="Dishakkshi and Kartikay">
-    </div>
-    <div class="hero-text">
-      <p class="eyebrow reveal">Together With Their Families</p>
-      <h1 class="name reveal">Dishakkshi</h1>
-      <div class="and-row reveal" aria-hidden="true">
-        <svg class="swash" viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 14 C 40 14, 70 20, 119 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
-        <span class="and">and</span>
-        <svg class="swash flip" viewBox="0 0 120 24" preserveAspectRatio="none"><path d="M0 14 C 40 14, 70 20, 119 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
-      </div>
-      <h1 class="name reveal">Kartikay</h1>
-      <p class="closing reveal">Invite You To Join Their Wedding</p>
-    </div>
-  </section>
+  const namesEl   = document.getElementById('std-names');
+  const dateEl    = document.getElementById('std-date');
+  const addrEl    = document.getElementById('std-address');
+  const formalEl  = document.getElementById('std-formal');
 
-  <section class="invocation wine">
-    <img class="ganesha reveal" src="resources/images/ganesh2.webp" alt="Shree Ganesha">
-    <p class="shloka reveal">|| Shree Ganeshay Namah ||</p>
-    <div class="gold-rule reveal"><span>❦</span></div>
-    <p class="invite-line reveal">With the blessings of the Almighty and our loved ones, we invite you to share the joy of our daughter's wedding as Dishakkshi begins this beautiful new chapter with Kartikay.</p>
-    <p class="invite-dates reveal">11 &amp; 12 December 2026<br>IIDM Resort, Lucknow</p>
-  </section>
+  // 1. Names typewriter
+  typewriter(namesEl, NAMES_TEXT, NAMES_START, NAMES_SPEED, () => {
+    // 2. Date typewriter (starts after names finish)
+    const dateDelay = 500;
+    typewriter(dateEl, DATE_TEXT, dateDelay, DATE_SPEED, () => {
+      // 3. Address typewriter
+      const addrDelay = 400;
+      typewriter(addrEl, ADDR_TEXT, addrDelay, ADDR_SPEED, () => {
+        // 4. Formal invitation fade-in
+        setTimeout(() => {
+          formalEl.style.animation = 'fadeInFormal 1.5s ease forwards';
+        }, 700);
+      });
+    });
+  });
+</script>
 
-  <section class="events">
-    <p class="sec-eyebrow gold-text reveal">The Celebrations</p>
-    <h2 class="sec-script reveal">Two days of joy</h2>
-
-    <div class="timeline" id="timeline">
-      <div class="timeline-track" id="timeline-track" aria-hidden="true"></div>
-      <div class="timeline-runner" id="timeline-runner" aria-hidden="true"><img src="resources/images/seal2.jpg" alt=""></div>
-
-      <div class="tl-row reveal">
-        <div class="tl-side tl-name"><h3>The Yellow Affair</h3></div>
-        <div class="tl-dot" aria-hidden="true"></div>
-        <div class="tl-side tl-details">
-          <p class="ev-when">Friday, 11 December 2026<br>10 AM onwards</p>
-          <p class="ev-venue">IIDM Resort, Lucknow</p>
-          <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
-          <button class="ev-cal" type="button" data-cal="haldi">＋ Add to calendar</button>
-        </div>
-      </div>
-
-      <div class="tl-row reveal">
-        <div class="tl-side tl-details">
-          <p class="ev-when">Friday, 11 December 2026<br>7 PM onwards</p>
-          <p class="ev-venue">IIDM Resort, Lucknow</p>
-          <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
-          <button class="ev-cal" type="button" data-cal="sangeet">＋ Add to calendar</button>
-        </div>
-        <div class="tl-dot" aria-hidden="true"></div>
-        <div class="tl-side tl-name"><h3>A night of music &amp; magic</h3></div>
-      </div>
-
-      <div class="tl-row reveal">
-        <div class="tl-side tl-name"><h3>Forever starts here</h3></div>
-        <div class="tl-dot" aria-hidden="true"></div>
-        <div class="tl-side tl-details">
-          <p class="ev-when">Saturday, 12 December 2026<br>11 AM onwards</p>
-          <p class="ev-venue">IIDM Resort, Lucknow</p>
-          <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
-          <button class="ev-cal" type="button" data-cal="wedding">＋ Add to calendar</button>
-        </div>
-      </div>
-
-      <div class="tl-row reveal">
-        <div class="tl-side tl-details">
-          <p class="ev-when">Saturday, 12 December 2026<br>7 PM onwards</p>
-          <p class="ev-venue">IIDM Resort, Lucknow</p>
-          <a class="ev-map" href="https://maps.app.goo.gl/ysgHqMdZNkK6nL4c6" target="_blank" rel="noopener">Tap for directions ↗</a>
-          <button class="ev-cal" type="button" data-cal="reception">＋ Add to calendar</button>
-        </div>
-        <div class="tl-dot" aria-hidden="true"></div>
-        <div class="tl-side tl-name"><h3>The forever celebration</h3></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="countdown-sec wine">
-    <p class="sec-eyebrow reveal">Counting Down To The Pheras</p>
-    <h2 class="sec-script reveal">Almost time</h2>
-    <div class="countdown reveal" id="countdown">
-      <div class="cd-cell"><span id="cd-d">--</span><label>Days</label></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-cell"><span id="cd-h">--</span><label>Hours</label></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-cell"><span id="cd-m">--</span><label>Minutes</label></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-cell"><span id="cd-s">--</span><label>Seconds</label></div>
-    </div>
-    <p class="cd-date reveal">12 · 12 · 2026</p>
-  </section>
-
-  <section class="rsvp" id="rsvp">
-    <p class="sec-eyebrow reveal">Will You Be There?</p>
-    <h2 class="sec-script reveal">RSVP</h2>
-    <p class="rsvp-note reveal">This invitation is exclusively for you.<br>Please let us know by 15 November 2026.</p>
-
-    <form id="rsvp-form" class="reveal" action="https://docs.google.com/forms/d/e/1FAIpQLScn9F1FWv582Qg_WsKpKcw3hjnKeaSPyMgoDP7KKhUJHLXV9A/formResponse" method="POST" target="rsvp-frame">
-      <label class="f-label" for="f-name">Your name</label>
-      <input class="f-input" id="f-name" type="text" name="entry.1731653820" required placeholder="As we should announce you">
-
-      <label class="f-label" for="f-contact">Phone / WhatsApp</label>
-      <input class="f-input" id="f-contact" type="text" name="entry.89862364" required placeholder="So we can keep you updated">
-
-      <p class="f-label">Will you join us?</p>
-      <div class="pills">
-        <label class="pill"><input type="radio" name="entry.707843021" value="Yesss, Joyfully! :)" required><span>Yes, joyfully!</span></label>
-        <label class="pill"><input type="radio" name="entry.707843021" value="Sadly, can't make it :/"><span>Sadly, can't make it</span></label>
-      </div>
-
-      <p class="f-label">Joining us from <em>(pick all that apply)</em></p>
-      <div class="pills">
-        <label class="pill"><input type="checkbox" name="entry.1524924910" value="Haldi: 11th morning"><span>11th morning · Haldi</span></label>
-        <label class="pill"><input type="checkbox" name="entry.1524924910" value="Sangeet: 11th evening"><span>11th evening · Sangeet</span></label>
-        <label class="pill"><input type="checkbox" name="entry.1524924910" value="Wedding :12th morning"><span>12th morning · Wedding</span></label>
-        <label class="pill"><input type="checkbox" name="entry.1524924910" value="Reception: 12th evening"><span>12th evening · Reception</span></label>
-      </div>
-
-      <label class="f-label" for="f-count">Number of guests (including you)</label>
-      <input class="f-input" id="f-count" type="number" name="entry.190365657" min="1" max="10" value="1">
-
-      <label class="f-label" for="f-note">A note for us <em>(optional)</em></label>
-      <textarea class="f-input" id="f-note" name="entry.2025142271" rows="3" placeholder="Blessings, song requests, anything at all…"></textarea>
-
-      <button class="submit" type="submit">Send My RSVP</button>
-    </form>
-    <iframe name="rsvp-frame" id="rsvp-frame" title="rsvp" tabindex="-1"></iframe>
-  </section>
-
-  <footer class="wine">
-    <img src="resources/images/kd-logo.png" alt="K and D monogram" class="footer-logo">
-    <p class="footer-script">With love and warm regards,</p>
-    <p class="footer-names">Kalpana &amp; Mahendra</p>
-    <p class="footer-see">We look forward to celebrating with you</p>
-  </footer>
-
-</main>
-
-<div id="thankyou" aria-hidden="true">
-  <div class="ty-inner">
-    <div class="gold-rule"><span>❦</span></div>
-    <p class="ty-script">Thank you</p>
-    <p class="ty-caps">For Being Part Of Our Joy</p>
-    <p class="ty-msg" id="ty-msg">We are grateful to have our family and loved ones by our side as we celebrate this beautiful occasion. Your presence, blessings and warm wishes will make these celebrations even more special for our families.</p>
-    <p class="ty-names">With love,<br>Kalpana &amp; Mahendra</p>
-    <button class="ev-cal ty-cal" type="button" data-cal="all">＋ Add our dates to your calendar</button>
-    <button id="ty-close">Back to the invitation</button>
-  </div>
-</div>
-
-<audio id="bg-music" loop preload="auto" src="https://framerusercontent.com/assets/tHk7xrivW8bDCdhOyDo3Sw3P4D4.mp3"></audio>
-<button id="music-toggle" aria-label="Toggle music" hidden>♫</button>
-
-<script src="src/js/main.js?v=8"></script>
 </body>
 </html>
