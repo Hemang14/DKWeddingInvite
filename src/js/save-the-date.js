@@ -91,4 +91,35 @@
 
   // no envelope markup on the page (e.g. an older cached copy) — just play the reveal
   if (!envelope) startReveal();
+
+  // ---------- RSVP ----------
+
+  const form = document.getElementById('rsvp-form');
+  const thankyou = document.getElementById('std-thankyou');
+  const tyMsg = document.getElementById('std-ty-msg');
+  const tyClose = document.getElementById('std-ty-close');
+
+  if (form && thankyou) {
+    form.addEventListener('submit', () => {
+      const attending = form.querySelector('input[name^="entry"][value^="Yes"]');
+      const saidYes = attending && attending.checked;
+      if (tyMsg) {
+        tyMsg.textContent = saidYes
+          ? "We are grateful to have our family and loved ones by our side as we celebrate this beautiful occasion. Your presence, blessings and warm wishes mean the world to us."
+          : "We'll miss having you with us, but we're so grateful for your love and blessings. You'll be in our hearts on our special day.";
+      }
+      setTimeout(() => {
+        form.classList.add('std-hidden');
+        thankyou.classList.add('show');
+      }, 400);
+    });
+  }
+
+  if (tyClose && form && thankyou) {
+    tyClose.addEventListener('click', () => {
+      thankyou.classList.remove('show');
+      form.classList.remove('std-hidden');
+      form.reset();
+    });
+  }
 })();

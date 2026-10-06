@@ -15,7 +15,8 @@ body {
   font-family: 'Cormorant Garamond', serif;
   color: var(--cream);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ---------- Envelope ---------- */
@@ -356,3 +357,194 @@ body {
 }
 
 .std-formal.std-in { opacity: 0.85; }
+
+/* ---------- RSVP ---------- */
+
+.std-rsvp {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: var(--cream);
+  color: #3a2228;
+  text-align: center;
+  padding: 64px 28px 70px;
+}
+
+.std-rsvp-eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6d5147;
+  margin-bottom: 6px;
+}
+
+.std-rsvp-title {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  font-size: clamp(34px, 9vw, 42px);
+  color: #7c3a26;
+  margin-bottom: 20px;
+}
+
+.std-rsvp-note {
+  font-style: italic;
+  font-size: 16.5px;
+  color: #6d5147;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+#rsvp-form { max-width: 340px; margin: 0 auto; text-align: left; }
+
+.std-f-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7c3a26;
+  margin: 22px 0 8px;
+}
+
+.std-f-label em { text-transform: none; letter-spacing: 0.04em; color: #6d5147; font-style: italic; }
+
+.std-f-input {
+  width: 100%;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  color: #3a2228;
+  background: #fffdf8;
+  border: 1px solid rgba(201,163,92,0.6);
+  border-radius: 6px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.std-f-input:focus { border-color: #7c3a26; box-shadow: 0 0 0 3px rgba(124,58,38,0.12); }
+
+textarea.std-f-input { resize: vertical; }
+
+.std-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.std-pill input { position: absolute; opacity: 0; }
+
+.std-pill span {
+  display: inline-block;
+  font-size: 14.5px;
+  padding: 9px 16px;
+  border: 1px solid rgba(201,163,92,0.7);
+  border-radius: 40px;
+  background: #fffdf8;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.std-pill input:checked + span {
+  background: var(--bg-deep);
+  color: var(--gold-soft);
+  border-color: var(--bg-deep);
+}
+
+.std-pill input:focus-visible + span { outline: 2px solid var(--bg-deep); outline-offset: 2px; }
+
+.std-submit {
+  width: 100%;
+  margin-top: 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  background: linear-gradient(170deg, #0c2318, var(--bg-deep) 60%, #020705);
+  border: 1px solid var(--gold);
+  border-radius: 40px;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.std-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(5,14,10,0.35); }
+
+#rsvp-frame { display: none; width: 0; height: 0; border: 0; }
+
+.std-thankyou {
+  display: none;
+  max-width: 340px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.std-thankyou.show { display: block; }
+#rsvp-form.std-hidden { display: none; }
+
+.std-ty-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  color: #7c3a26;
+  margin-top: 10px;
+}
+
+.std-ty-msg {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #6d5147;
+  margin: 14px 0 26px;
+}
+
+.std-ty-close {
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7c3a26;
+  background: none;
+  border: 1px solid rgba(124,58,38,0.5);
+  border-radius: 40px;
+  padding: 10px 22px;
+  cursor: pointer;
+}
+
+/* ---------- Footer ---------- */
+
+.std-footer {
+  width: 100%;
+  max-width: 480px;
+  background: var(--cream);
+  display: flex;
+  justify-content: center;
+  padding: 0 28px 56px;
+}
+
+.std-footer-card {
+  width: 100%;
+  max-width: 280px;
+  background:
+    radial-gradient(120% 140% at 50% 0%, #0d2a1c 0%, var(--bg-deep) 55%, #020705 100%);
+  border: 1px solid rgba(201,163,92,0.4);
+  border-radius: 20px;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.3);
+  padding: 32px 24px 28px;
+  text-align: center;
+}
+
+.std-footer-logo {
+  width: 52px;
+  height: auto;
+  margin-bottom: 14px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
+}
+
+.std-footer-script { font-family: 'Great Vibes', cursive; font-size: 26px; color: var(--gold-soft); }
+
+.std-footer-names {
+  font-size: 16px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin: 8px 0 10px;
+}
+
+.std-footer-see { font-size: 13px; font-style: italic; color: var(--gold-soft); opacity: 0.85; }

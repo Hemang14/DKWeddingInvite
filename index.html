@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="src/css/save-the-date.css?v=3">
+<link rel="stylesheet" href="src/css/save-the-date.css?v=4">
 </head>
 <body>
 
@@ -63,6 +63,51 @@
   </div>
 </main>
 
-<script src="src/js/save-the-date.js?v=3"></script>
+<section class="std-rsvp" id="rsvp">
+  <p class="std-rsvp-eyebrow">Will You Be There?</p>
+  <h2 class="std-rsvp-title">RSVP</h2>
+  <p class="std-rsvp-note">This invitation is exclusively for you.<br>Please let us know by 15 November 2026.</p>
+
+  <form id="rsvp-form" action="https://docs.google.com/forms/d/e/1FAIpQLScn9F1FWv582Qg_WsKpKcw3hjnKeaSPyMgoDP7KKhUJHLXV9A/formResponse" method="POST" target="rsvp-frame">
+    <label class="std-f-label" for="f-name">Your name</label>
+    <input class="std-f-input" id="f-name" type="text" name="entry.1731653820" required placeholder="As we should announce you">
+
+    <label class="std-f-label" for="f-contact">Phone / WhatsApp</label>
+    <input class="std-f-input" id="f-contact" type="text" name="entry.89862364" required placeholder="So we can keep you updated">
+
+    <p class="std-f-label">Will you join us?</p>
+    <div class="std-pills">
+      <label class="std-pill"><input type="radio" name="entry.707843021" value="Yesss, Joyfully! :)" required><span>Yes, joyfully!</span></label>
+      <label class="std-pill"><input type="radio" name="entry.707843021" value="Sadly, can't make it :/"><span>Sadly, can't make it</span></label>
+    </div>
+
+    <label class="std-f-label" for="f-count">Number of guests (including you)</label>
+    <input class="std-f-input" id="f-count" type="number" name="entry.190365657" min="1" max="10" value="1">
+
+    <label class="std-f-label" for="f-note">A note for us <em>(optional)</em></label>
+    <textarea class="std-f-input" id="f-note" name="entry.2025142271" rows="3" placeholder="Blessings, song requests, anything at all…"></textarea>
+
+    <button class="std-submit" type="submit">Send My RSVP</button>
+  </form>
+  <iframe name="rsvp-frame" id="rsvp-frame" title="rsvp" tabindex="-1"></iframe>
+
+  <div class="std-thankyou" id="std-thankyou">
+    <div class="std-rule std-rule-sm"><span>❖</span></div>
+    <p class="std-ty-script">Thank you</p>
+    <p class="std-ty-msg" id="std-ty-msg">We are grateful to have our family and loved ones by our side as we celebrate this beautiful occasion. Your presence, blessings and warm wishes mean the world to us.</p>
+    <button class="std-ty-close" id="std-ty-close" type="button">Back to RSVP</button>
+  </div>
+</section>
+
+<footer class="std-footer">
+  <div class="std-footer-card">
+    <img class="std-footer-logo" src="resources/images/SaveTheDateGanesha.png" alt="" aria-hidden="true">
+    <p class="std-footer-script">With love and warm regards,</p>
+    <p class="std-footer-names">Dishakkshi &amp; Kartikay</p>
+    <p class="std-footer-see">We look forward to celebrating with you</p>
+  </div>
+</footer>
+
+<script src="src/js/save-the-date.js?v=4"></script>
 </body>
 </html>
