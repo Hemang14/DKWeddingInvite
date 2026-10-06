@@ -518,8 +518,25 @@ textarea.std-f-input { resize: vertical; }
   font-size: 16px;
   line-height: 1.7;
   color: var(--gold-soft);
-  margin: 16px 0 30px;
+  margin: 16px 0 26px;
 }
+
+.std-ty-cal {
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: var(--bg-deep);
+  background: linear-gradient(170deg, var(--gold-hi), var(--gold) 60%, #9a7434);
+  border: none;
+  border-radius: 40px;
+  padding: 13px 20px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+
+.std-ty-cal:active { opacity: 0.85; }
 
 .std-ty-close {
   font-family: inherit;
@@ -539,12 +556,26 @@ textarea.std-f-input { resize: vertical; }
 /* ---------- Footer ---------- */
 
 .std-footer {
+  position: relative;
   width: 100%;
   max-width: 480px;
-  background:
-    radial-gradient(120% 90% at 50% 0%, #0d2a1c 0%, var(--bg-deep) 55%, #020705 100%);
+  background: url('../../resources/images/SaveTheDateBG.jpg') center / cover no-repeat;
   text-align: center;
   padding: 56px 26px 64px;
+  overflow: hidden;
+}
+
+.std-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(2,8,5,0.45);
+  pointer-events: none;
+}
+
+.std-footer > * {
+  position: relative;
+  z-index: 2;
 }
 
 .std-footer-logo {

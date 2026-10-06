@@ -122,4 +122,72 @@
       form.reset();
     });
   }
+
+  // ---------- Add to calendar ----------
+  // Only the date and venue are confirmed at this stage (times follow with the formal
+  // invitation), so this is a single all-day event spanning both wedding dates.
+
+  const tyCal = document.getElementById('std-ty-cal');
+
+  function icsEvent(uid, title, startDate, endDate) {
+    return [
+      'BEGIN:VEVENT',
+      `UID:${uid}@dkwedding`,
+      `DTSTART;VALUE=DATE:${startDate}`,
+      `DTEND;VALUE=DATE:${endDate}`,
+      `SUMMARY:${title}`,
+      'LOCATION:IIDM Resort\\, Lucknow',
+      'END:VEVENT'
+    ].join('\r\n');
+  }
+
+  function downloadICS(filename, events) {
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//DK Wedding//EN',
+      'CALSCALE:GREGORIAN',
+      ...events,
+      'END:VCALENDAR'
+    ].join('\r\n');
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function googleCalUrl(title, startDate, endDate) {
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: title,
+      dates: `${startDate}/${endDate}`,
+      location: 'IIDM Resort, Lucknow'
+    });
+    return `https://calendar.google.com/calendar/render?${params.toString()}`;
+  }
+
+  if (tyCal) {
+    // iOS hands a downloaded .ics straight to Apple Calendar, so keep that path there.
+    // Chrome on Android just drops .ics files into Downloads with no auto-import, so send
+    // Android guests straight to Google Calendar's own "add event" link instead.
+    const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+
+    const title = "Dishakkshi & Kartikay's Wedding";
+    const startDate = '20261211';
+    const endDate = '20261213'; // exclusive end date, so the event spans the 11th and 12th
+
+    tyCal.addEventListener('click', () => {
+      if (isAndroid && !isIOS) {
+        window.open(googleCalUrl(title, startDate, endDate), '_blank', 'noopener');
+      } else {
+        downloadICS('DK-Save-the-Date.ics', [icsEvent('savethedate', title, startDate, endDate)]);
+      }
+    });
+  }
 })();
