@@ -1,11 +1,11 @@
 // Save the Date — single staged reveal, played once on load.
-// Order: butterfly + headline -> "for the wedding of" + rule -> names -> date ->
-//        venue (typed out letter by letter) -> "Formal invitation to follow"
+// Order: Ganesha motif -> "Save the Date" headline -> "for the wedding of" + rule ->
+//        names -> date -> venue (typed out letter by letter) -> "Formal invitation to follow"
 
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const steps = [1, 2, 3, 4, 5].map(n =>
+  const steps = [1, 2, 3, 4, 5, 6].map(n =>
     Array.from(document.querySelectorAll('.std-seq-' + n))
   );
   const formal = document.querySelector('.std-formal');
@@ -41,7 +41,7 @@
     return;
   }
 
-  const GAP = 950;    // pause between each reveal step
+  const GAP = 1100;   // pause between each reveal step (matches the slower blur-in feel)
   const START = 300;  // small delay before anything moves, so the page isn't mid-paint
 
   let t = START;
@@ -50,9 +50,9 @@
     t += GAP;
   });
 
-  // the venue step (index 4, the 5th group) finishes revealing at this point;
+  // the venue step (index 5, the 6th group) finishes revealing at this point;
   // start typing right after it fades in, then reveal the closing line once typing ends
-  const venueRevealAt = START + GAP * 4;
+  const venueRevealAt = START + GAP * 5;
   setTimeout(() => {
     typeVenue(() => {
       setTimeout(() => reveal([formal]), 500);
