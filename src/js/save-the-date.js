@@ -171,23 +171,73 @@
     return `https://calendar.google.com/calendar/render?${params.toString()}`;
   }
 
-  if (tyCal) {
-    // iOS hands a downloaded .ics straight to Apple Calendar, so keep that path there.
-    // Chrome on Android just drops .ics files into Downloads with no auto-import, so send
-    // Android guests straight to Google Calendar's own "add event" link instead.
-    const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent);
-    const isAndroid = /Android/.test(navigator.userAgent);
+  // iOS hands a downloaded .ics straight to Apple Calendar, so keep that path there.
+  // Chrome on Android just drops .ics files into Downloads with no auto-import, so send
+  // Android guests straight to Google Calendar's own "add event" link instead.
+  const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent);
+  const isAndroid = /Android/.test(navigator.userAgent);
 
-    const title = "Dishakkshi & Kartikay's Wedding";
-    const startDate = '20261211';
-    const endDate = '20261213'; // exclusive end date, so the event spans the 11th and 12th
+  const calTitle = "Dishakkshi & Kartikay's Wedding";
+  const calStart = '20261211';
+  const calEnd = '20261213'; // exclusive end date, so the event spans the 11th and 12th
 
-    tyCal.addEventListener('click', () => {
-      if (isAndroid && !isIOS) {
-        window.open(googleCalUrl(title, startDate, endDate), '_blank', 'noopener');
+  function addToCalendar() {
+    if (isAndroid && !isIOS) {
+      window.open(googleCalUrl(calTitle, calStart, calEnd), '_blank', 'noopener');
+    } else {
+      downloadICS('DK-Save-the-Date.ics', [icsEvent('savethedate', calTitle, calStart, calEnd)]);
+    }
+  }
+
+  if (tyCal) tyCal.addEventListener('click', addToCalendar);
+
+  // tapping the date on the main card adds it to the calendar the same way
+  const dateCal = document.getElementById('std-date-cal');
+  if (dateCal) dateCal.addEventListener('click', addToCalendar);
+
+  // ---------- Countdown (on the thank-you page) ----------
+
+  const cdTarget = new Date('2026-12-12T11:00:00+05:30').getTime();
+  const cd = {
+    d: document.getElementById('std-cd-d'),
+    h: document.getElementById('std-cd-h'),
+    m: document.getElementById('std-cd-m'),
+    s: document.getElementById('std-cd-s')
+  };
+
+  if (cd.d && cd.h && cd.m && cd.s) {
+    const tickCountdown = () => {
+      const diff = cdTarget - Date.now();
+      if (diff <= 0) {
+        cd.d.textContent = '00'; cd.h.textContent = '00';
+        cd.m.textContent = '00'; cd.s.textContent = '00';
+        return;
+      }
+      cd.d.textContent = String(Math.floor(diff / 864e5)).padStart(2, '0');
+      cd.h.textContent = String(Math.floor(diff / 36e5) % 24).padStart(2, '0');
+      cd.m.textContent = String(Math.floor(diff / 6e4) % 60).padStart(2, '0');
+      cd.s.textContent = String(Math.floor(diff / 1e3) % 60).padStart(2, '0');
+    };
+    tickCountdown();
+    setInterval(tickCountdown, 1000);
+  }
+
+  // ---------- Guest count: 0 allowed only when declining ----------
+
+  const countInput = document.getElementById('f-count');
+  const attendRadios = form ? form.querySelectorAll('input[name="entry.707843021"]') : [];
+
+  attendRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (!countInput || !radio.checked) return;
+      const declining = radio.value.startsWith("Sadly");
+      if (declining) {
+        countInput.min = '0';
+        countInput.value = '0';
       } else {
-        downloadICS('DK-Save-the-Date.ics', [icsEvent('savethedate', title, startDate, endDate)]);
+        countInput.min = '1';
+        if (Number(countInput.value) < 1) countInput.value = '1';
       }
     });
-  }
+  });
 })();

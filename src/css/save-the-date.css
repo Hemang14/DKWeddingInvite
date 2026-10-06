@@ -300,21 +300,39 @@ body {
 }
 
 .std-date {
+  display: inline-block;
+  font-family: inherit;
   font-size: clamp(18px, 5.2vw, 22px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-indent: 0.18em;
   color: var(--cream);
+  background: none;
+  border: none;
+  border-bottom: 1px dotted rgba(243,236,221,0.5);
+  padding: 0 0 3px;
+  cursor: pointer;
 }
 
+/* tapping the date adds the wedding dates to the guest's calendar */
+.std-date:active { opacity: 0.75; }
+
 .std-venue {
+  display: inline-block;
   font-size: clamp(12px, 3.4vw, 14px);
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--gold-soft);
   opacity: 0.92;
   min-height: 1.4em; /* reserves its line so nothing jumps while it types in */
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(230,207,150,0.5);
+  padding-bottom: 3px;
+  cursor: pointer;
 }
+
+/* tapping the venue opens its map link */
+.std-venue:active { opacity: 0.7; }
 
 /* the typed-out text gets its own tracked span; a thin cursor blinks at the end while typing */
 .std-type-text { letter-spacing: 0.26em; }
@@ -521,6 +539,42 @@ textarea.std-f-input { resize: vertical; }
   margin: 16px 0 26px;
 }
 
+.std-countdown {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.std-cd-cell { min-width: 52px; }
+
+.std-cd-cell span {
+  display: block;
+  font-size: clamp(26px, 7.4vw, 32px);
+  font-weight: 500;
+  color: var(--cream);
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+}
+
+.std-cd-cell label {
+  display: block;
+  margin-top: 2px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+.std-cd-sep { color: var(--gold); font-size: 20px; transform: translateY(-6px); }
+
+.std-cd-date {
+  margin: 14px 0 26px;
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+}
+
 .std-ty-cal {
   display: block;
   width: 100%;
@@ -561,7 +615,7 @@ textarea.std-f-input { resize: vertical; }
   max-width: 480px;
   background: url('../../resources/images/SaveTheDateBG.jpg') center / cover no-repeat;
   text-align: center;
-  padding: 56px 26px 64px;
+  padding: 34px 26px 40px;
   overflow: hidden;
 }
 
