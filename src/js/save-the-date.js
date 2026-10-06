@@ -41,7 +41,7 @@
     return;
   }
 
-  const GAP = 1100;   // pause between each reveal step (matches the slower blur-in feel)
+  const GAP = 900;    // pause between each reveal step (matches the 0.9s fade duration, so every stage fades at the same even pace)
   const START = 300;  // small delay before anything moves, so the page isn't mid-paint
 
   let t = START;

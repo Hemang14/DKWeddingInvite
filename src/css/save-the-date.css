@@ -60,7 +60,7 @@ body {
 .std-seq {
   opacity: 0;
   filter: blur(10px);
-  transition: opacity 1.4s ease, filter 1.4s ease;
+  transition: opacity 0.9s ease, filter 0.9s ease;
 }
 
 .std-seq.std-in {
