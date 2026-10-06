@@ -30,7 +30,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: opacity 1s ease, visibility 1s;
+  transition: opacity 0.9s ease, visibility 0.9s;
 }
 
 #envelope::before {
@@ -190,7 +190,7 @@ body {
 .std-seq {
   opacity: 0;
   filter: blur(10px);
-  transition: opacity 1.8s ease, filter 1.8s ease;
+  transition: opacity 1.5s ease, filter 1.5s ease;
 }
 
 .std-seq.std-in {

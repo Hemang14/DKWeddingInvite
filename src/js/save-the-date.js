@@ -26,7 +26,7 @@
     if (!venue || !typeTarget) { onDone(); return; }
     venue.classList.add('std-typing');
     let i = 0;
-    const CHAR_MS = 55;
+    const CHAR_MS = 45;
     (function tick() {
       if (i <= venueText.length) {
         typeTarget.textContent = venueText.slice(0, i);
@@ -47,8 +47,8 @@
       return;
     }
 
-    const GAP = 1800;   // pause between each reveal step (matches the 1.8s fade duration, so every stage fades at the same slower, even pace)
-    const START = 300;  // small delay before anything moves, so the page isn't mid-paint
+    const GAP = 1500;   // pause between each reveal step (matches the 1.5s fade duration, so every stage fades at the same even pace)
+    const START = 150;  // small delay before anything moves, so the page isn't mid-paint
 
     let t = START;
     steps.forEach((group) => {
@@ -61,7 +61,7 @@
     const venueRevealAt = START + GAP * 5;
     setTimeout(() => {
       typeVenue(() => {
-        setTimeout(() => reveal([formal]), 500);
+        setTimeout(() => reveal([formal]), 400);
       });
     }, venueRevealAt + 150);
   }
@@ -82,7 +82,7 @@
     startReveal();
     if (envelope) {
       envelope.classList.add('open');
-      setTimeout(() => envelope.remove(), reduceMotion ? 0 : 1200);
+      setTimeout(() => envelope.remove(), reduceMotion ? 0 : 900);
     }
   }
 
