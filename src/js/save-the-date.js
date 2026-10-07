@@ -11,6 +11,57 @@
   const seal = document.getElementById('seal');
   const envHint = document.getElementById('env-hint');
 
+  // ---------- Music ----------
+  // Starts 26s into the track on first open, then loops; pauses whenever the tab
+  // is backgrounded and picks back up when it's foregrounded again, same as the main card.
+
+  const music = document.getElementById('std-music');
+  const musicBtn = document.getElementById('std-music-toggle');
+  const MUSIC_START = 26;
+
+  let musicWanted = false;
+  let musicStartSet = false;
+
+  function primeMusicStart() {
+    if (musicStartSet || !music) return;
+    if (music.duration && music.duration > MUSIC_START) {
+      try { music.currentTime = MUSIC_START; musicStartSet = true; } catch (e) {}
+    }
+  }
+  if (music) music.addEventListener('loadedmetadata', primeMusicStart);
+
+  function playMusic() {
+    if (!music) return;
+    musicWanted = true;
+    if (musicBtn) { musicBtn.hidden = false; musicBtn.classList.remove('paused'); }
+    primeMusicStart();
+    music.play().catch(() => {});
+  }
+
+  if (musicBtn) {
+    musicBtn.addEventListener('click', () => {
+      if (!music) return;
+      if (music.paused) {
+        musicWanted = true;
+        music.play().catch(() => {});
+        musicBtn.classList.remove('paused');
+      } else {
+        musicWanted = false;
+        music.pause();
+        musicBtn.classList.add('paused');
+      }
+    });
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (!music) return;
+    if (document.hidden) {
+      music.pause();
+    } else if (musicWanted) {
+      music.play().catch(() => {});
+    }
+  });
+
   const steps = [1, 2, 3, 4, 5, 6].map(n =>
     Array.from(document.querySelectorAll('.std-seq-' + n))
   );
@@ -87,7 +138,7 @@
     envelope.remove();
     if (card) card.setAttribute('aria-hidden', 'false');
     startReveal();
-    return;
+    playMusic();
   }
 
   let opened = false;
@@ -96,6 +147,7 @@
     opened = true;
     if (card) card.setAttribute('aria-hidden', 'false');
     startReveal();
+    playMusic();
     if (envelope) {
       envelope.classList.add('open');
       setTimeout(() => envelope.remove(), reduceMotion ? 0 : 900);

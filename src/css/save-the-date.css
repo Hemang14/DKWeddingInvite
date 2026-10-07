@@ -654,3 +654,23 @@ textarea.std-f-input { resize: vertical; }
 }
 
 .std-footer-see { font-size: 14px; font-style: italic; color: var(--gold-soft); opacity: 0.85; }
+
+/* ---------- Music toggle ---------- */
+
+#std-music-toggle {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 40;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: rgba(5,14,10,0.85);
+  color: var(--gold-soft);
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+}
+
+#std-music-toggle.paused { opacity: 0.55; }
