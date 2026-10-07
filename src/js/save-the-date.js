@@ -1,5 +1,5 @@
 // Save the Date — envelope opens first, then a single staged reveal plays once.
-// Reveal order: Ganesha motif -> "Circle the Day" headline -> "for the wedding of" + rule ->
+// Reveal order: Ganesha motif -> "Save the Date" headline -> "for the wedding of" + rule ->
 //               names -> date (typed out letter by letter) -> venue (typed out letter by letter) ->
 //               "Formal invitation to follow"
 
@@ -62,7 +62,7 @@
     }
 
     const START = 150;      // small delay before anything moves, so the page isn't mid-paint
-    const HEADLINE_GAP = 450; // motif -> headline is quick, so "Circle the Day" lands fast
+    const HEADLINE_GAP = 450; // motif -> headline is quick, so "Save the Date" lands fast
     const STEP_GAP = 1500;    // the rest keep the slower, even pace
     const TYPE_PAUSE = 150;   // pause between a line's container fading in and it starting to type
     const POST_TYPE_PAUSE = 400; // pause after a line finishes typing before the next thing appears
